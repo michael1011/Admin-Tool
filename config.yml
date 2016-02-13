@@ -1,0 +1,43 @@
+# AdminTool by Michael1011
+# Version 1.0.0
+
+JoinMessages:
+  EnableWelcomePlayer: true
+# Aktiviert und dearktiviert die "Willkommen <player>!" Nachricht beim joinen.
+
+  SecondLine: "&6Updates: &erelease"
+  ThirdLine: "&6Coming updates: &e/ping will show your ping..."
+# Ändert die Joinmessages. Wenn zwischen den Anführungszeichen nichts steht wird nichts ausgegeben.
+
+Settings:
+# Andere Einstellungen
+  
+  NoPermissionMessage: "&4Not enough permissions!"
+# Die Nachricht die Spieler bekommen wenn sie nicht die benötigten Permissions haben (nur dieses Plugin)
+
+  OPPrefixEnable: true
+# Sollten OPs eine spezielle Farbe haben?
+
+  OPPrefix: "&4[Admin] "
+# Wird im Chat vor dem Namen angezeigt
+  
+  OPColor: "§4"
+# Sorry, aber du musst ein § (und kein &) vor den Fabcodes machen. :/
+
+  GMARadius: 500
+# Radius von GMA in Blöcke
+
+  CustomSpawn: false
+# Soll /spawn aktiviert sein?
+
+  spawnCoord: false
+# Die Koordinaten wo der Spieler auftauchen soll
+
+  Shop: false
+# Soll der Befehl /shop aktiviert werden um zum Shop zu gelangen?
+
+  shopCoord: false
+# Die Koordinaten vom Shop
+
+Homes:
+# Hier nicht rein schreiben

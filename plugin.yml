@@ -1,0 +1,36 @@
+main: me.michael1011.main.main
+name: AdminTool
+version: 1.0.0
+description: Admin Tool by Michael1011
+author: Michael1011
+database: false
+
+commands:
+   gm:
+     description: "easy switch between gamemode 1 and 0"
+     aliases: [game, gamem]
+     usage: /gm [0, 1]
+   invsee:
+     description: "see the inventory of an other player"
+     aliases: [invs]
+     usage: /invsee <player>
+   day:
+     description: "set the time in your world to day"
+     aliases: [d]
+     usage: /day
+   adminreload:
+     description: "reload the config"
+     aliases: [lr, lebenr, lreload]
+     usage: /lebenreload
+   gma:
+     description: "sets all players in a specific radius in the gamemode 1 or 0"
+     aliases: [gms, gmk]
+     usage: /gma [0, 1]
+   spawn:
+     description: "teleport yourself to the spawn"
+     aliases: [sp]
+     usage: /spawn [set]
+   home:
+     description: "teleport yourself to your home"
+     aliases: [ho]
+     usage: /home [set]
