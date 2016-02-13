@@ -1,6 +1,8 @@
 #Admin Tool
 #####A plugin for Minecraft Spigot/Bukkit 1.8.
 
+###Download the latest compiled jar at Spigot: http://bit.ly/1QexebX
+
 It contains a few features:
 
 | Command | Description |
