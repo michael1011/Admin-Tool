@@ -6,7 +6,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-
 public class PlayerJoin implements Listener {
 	
 	private main plugin;
@@ -29,26 +28,28 @@ public class PlayerJoin implements Listener {
 			if(p.hasPermission("admintool.joinMessage")) {
 				
 				if (plugin.config.getBoolean("JoinMessages.EnableWelcomePlayer") == true) {
-					p.sendMessage("§eWelcome §6"+p.getName()+"§e!");
 					
+					String TagColor = ChatColor.translateAlternateColorCodes('&', plugin.config.getString("Settings.OPPrefix"));
+					
+					p.sendMessage(ChatColor.YELLOW+"Welcome "+TagColor+p.getName()+ChatColor.YELLOW+"!");
 				}
 
 			} else {
 				
 				if (plugin.config.getBoolean("JoinMessages.EnableWelcomePlayer") == true) {
-					p.sendMessage("§eWelcome §6"+p.getName()+"§e!");
+					
+					p.sendMessage(ChatColor.YELLOW+"Welcome "+ChatColor.GOLD+p.getName()+ChatColor.YELLOW+"!");
 				}
 				
-				if (line2 != null) {
+				if (plugin.config.getBoolean("JoinMessages.SecondLineEnable")) {
 					p.sendMessage(line2);
 				}
 
-				if (line3 != null) {
+				if (plugin.config.getBoolean("JoinMessages.ThirdLineEnable")) {
 					p.sendMessage(line3);
 				}
 
-				p.sendMessage("");
-				
+				p.sendMessage("");	
 			}
 		}
 	}

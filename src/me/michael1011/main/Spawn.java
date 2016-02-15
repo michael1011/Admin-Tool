@@ -41,6 +41,7 @@ public class Spawn implements CommandExecutor {
 				} else {
 					
 					if (p.hasPermission("admintool.spawn")) {
+						
 						String[] parts = plugin.config.getString("Settings.spawnCoord").split("/");
 						Location player = new Location(Bukkit.getServer().getWorld(parts[3]), Integer.parseInt(parts[0]),
 						         Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));

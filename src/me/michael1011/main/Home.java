@@ -32,7 +32,7 @@ public class Home implements CommandExecutor {
 				
 				if (p.hasPermission("admintool.home")) {
 					
-					if (plugin.config.getBoolean("Homes." + p.getName() + ".enable") == true) {
+					if (plugin.config.getBoolean("Homes." + p.getName() + ".enable")) {
 						
 						String[] parts = plugin.config.getString("Homes." + p.getName() + ".coords").split("/");
 						Location player = new Location(Bukkit.getServer().getWorld(parts[3]), Integer.parseInt(parts[0]),
@@ -54,19 +54,26 @@ public class Home implements CommandExecutor {
 				
 			} else if (args.length == 1) {
 				
-				Location location = p.getLocation();
-				plugin.config.set("Homes." + p.getName() + ".coords", location.getBlockX() + "/" + location.getBlockY() + "/" +
-						           location.getBlockZ() + "/" + location.getWorld().getName());
-				plugin.config.set("Homes." + p.getName() + ".enable", true);
-				try {
-					plugin.config.save(main.configf);
-				} catch (IOException e) {
-					e.printStackTrace();
-				};
-				
-				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeSet")));
-				
-			} else if (args.length > 1){
+				if (args[0].equalsIgnoreCase("set")) {
+					Location location = p.getLocation();
+					plugin.config.set("Homes." + p.getName() + ".coords", location.getBlockX() + "/" + location.getBlockY() + "/" +
+							           location.getBlockZ() + "/" + location.getWorld().getName());
+					plugin.config.set("Homes." + p.getName() + ".enable", true);
+					try {
+						plugin.config.save(main.configf);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeSet")));
+					
+				} else {
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeHelp1")));
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeHelp2")));
+				}
+
+			} else {
 				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
 				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeHelp1")));
 				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeHelp2")));

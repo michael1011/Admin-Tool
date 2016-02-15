@@ -13,7 +13,9 @@ It contains a few features:
 | home | set your home with /home set and tp yourself to it with /home |
 | invsee | see the inventory of an other player |
 | spawn | teleports you to the spawn (set it with /spawn set) |
-|adminreload | reload the config |
+| adminreload | reload the config |
+| maintenance | admintool.maintenance.set |
+| no command | people can join when the maintenance mode is on with a permission |
 | no command | set the color of admins in the tablist |
 | no command | set the chat prefix of the admins |
 | no command | differrent join messages for admins and players |
@@ -32,8 +34,6 @@ Permissions (or use OP):
 | /home and /home set | admintool.home |
 | /invsee | admintool.invsee |
 | Admin NameTag for tablist and chat | admintool.NameTag |
-| Admin join Message | admintool.joinMessage |
-| cooming | permissions |
 | /maintenance | admintool.maintenance.set |
 | join when the player is in maintenance mode | admintool.maintenance.join |
 

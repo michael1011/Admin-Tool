@@ -1,6 +1,6 @@
 main: me.michael1011.main.main
 name: AdminTool
-version: 1.1.0
+version: 1.2.0
 description: Admin Tool by Michael1011
 author: Michael1011
 database: false
@@ -23,7 +23,7 @@ commands:
      aliases: [ar, adminr, areload]
      usage: /lebenreload
    gma:
-     description: "sets all players in a specific radius in the gamemode 1 or 0"
+     description: "sets all players in a specific radius in gamemode 1 or 0"
      aliases: [gms, gmk]
      usage: /gma [0, 1]
    spawn:
@@ -34,3 +34,7 @@ commands:
      description: "teleport yourself to your home"
      aliases: [ho]
      usage: /home [set]
+   maintenance:
+     description: "enable/disable the maintenance mode"
+     aliases: [maint]
+     usage: /maintenance [on, off]

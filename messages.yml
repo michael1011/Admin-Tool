@@ -1,7 +1,7 @@
 Players:
   NoPermission: "&4Not enough permissions!"
   Usage: "&4&lUsage:"
-# This is the message when write a command false in my plugin. Example: /day testet 
+# This is the message when write a command false in my plugin. Example: /day testtest
   
   Reload: "&eReloaded AdminTool config &6successfully&e!"
 # For the command /adminreload .
@@ -62,6 +62,13 @@ Players:
   SpawnHelp2: "&6/spawn set: &esets the spawn point"
 # The help of /spawn
 
+  MaintenanceOn: "&6Maintenance mode &eenabled&6!"
+# When you enable the maintenanve mode.
+  MaintenanceOff: "&6Maintenance mode &edisabled&6!"
+# When you disable the maintenanve mode.
+  MaintenanceHelp1: "&6/maintenance: &etoggles the maintenance mode (on, off)"
+  MaintenanceHelp2: "&6/maintenance on: &eenables the maintenance mode, replace on with off for disabling"
+# Help for the /maintenance command
   
 Console:
 # Some player messages will be shown in the console too.

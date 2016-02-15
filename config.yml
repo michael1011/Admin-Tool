@@ -1,20 +1,33 @@
 # AdminTool by Michael1011
-# Version 1.1.0
+# Version 1.2.0
+
+MaintenanceMode: false
+# When its true is the maintenance mode on. Set its ingame with /maintenance .
+MaintenanceMessage: "&cThe server is in &4maintenance mode&c!"
+# This message sees a player when he wants to join an the maintenance mode is on.
+MaintenanceMotd: true
+# When the maintenance mode active is should there be a different motd?
+MaintenanceMotdText: "\u00A7cThe server is in \u00A74maintenance mode\u00A7c! \n\u00A7cWe will be online again \u00A74in one hour\u00A7c!"
+# If MaintenanceMotd is true this will be your motd when the maintenance mode is on. Use this color codes http://bit.ly/1Tm0U7e and \n for a new line.
+
 
 JoinMessages:
   EnableWelcomePlayer: true
 # Activates "Welcome <player>!" message on join.
 
-  SecondLine: "&6Updates: &emade all messages editable!"
-  ThirdLine: "&6Coming updates: &emaintenance mode..."
-# Changes the join messages of non admins. Write nothing between the quotation marks to disable it.
+  SecondLine: "&6Updates: &emaintenance mode (/maintenance)..."
+  SecondLineEnable: true
+  ThirdLine: "&6Coming updates: &etranslation to &6German &eand &6warps&e!"
+  ThirdLineEnable: true
+# Changes the join messages of non admins.
+
 
 Settings: 
   OPPrefixEnable: true
 # Should Admins have a prefix in the tablist and the chat?
 
   OPPrefix: "&4[Admin] "
-# This appears in front of the name of a admin in the chat.
+# This appears in front of the name of a admin in the chat and admins will see it in the welcome message.
   
   OPColor: "§4"
 # Sorry, but you have to set a § (not a &) in front of the color code. :/

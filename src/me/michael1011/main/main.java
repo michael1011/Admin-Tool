@@ -29,6 +29,8 @@ public class main extends JavaPlugin implements CommandExecutor {
         instance = this;
         createFiles();
 
+        new MaintenanceL(this);
+        new MaintenanceC(this);
 		new Home(this);
 		new Spawn(this);
 		new Gma(this);

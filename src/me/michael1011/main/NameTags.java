@@ -45,9 +45,9 @@ public class NameTags implements Listener {
 			String AdminPrefix = ChatColor.translateAlternateColorCodes('&', plugin.config.getString("Settings.OPPrefix"));
 				
 				if (chat_player.hasPermission("admintool.NameTag")) {
-					chat_event.setFormat(AdminPrefix + chat_name + "§f >> " + Msg);
+					chat_event.setFormat(AdminPrefix + chat_name + ChatColor.WHITE + " >> " + Msg);
 				} else {
-					chat_event.setFormat(chat_name + "§f >> " + Msg);
+					chat_event.setFormat(chat_name + ChatColor.WHITE + " >> " + Msg);
 				
 		}
 	}
