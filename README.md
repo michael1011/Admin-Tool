@@ -33,6 +33,9 @@ Permissions (or use OP):
 | /invsee | admintool.invsee |
 | Admin NameTag for tablist and chat | admintool.NameTag |
 | Admin join Message | admintool.joinMessage |
+| cooming | permissions |
+| /maintenance | admintool.maintenance.set |
+| join when the player is in maintenance mode | admintool.maintenance.join |
 
 
 Its also aviable at the Spigot resources: http://bit.ly/1QexebX
