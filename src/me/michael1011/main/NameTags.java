@@ -24,7 +24,7 @@ public class NameTags implements Listener {
 		
 		if (plugin.getConfig().getBoolean("Settings.OPPrefixEnable") == true) {
 
-			String TagColor = plugin.getConfig().getString("Settings.OPColor");
+			String TagColor = plugin.config.getString("Settings.OPColor");
 			
 			if (player.hasPermission("admintool.NameTag")) {
 				player.setPlayerListName(TagColor + name);
@@ -42,7 +42,7 @@ public class NameTags implements Listener {
 			Player chat_player = chat_event.getPlayer();
 			String chat_name = chat_player.getName();
 			String Msg = chat_event.getMessage();
-			String AdminPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Settings.OPPrefix"));
+			String AdminPrefix = ChatColor.translateAlternateColorCodes('&', plugin.config.getString("Settings.OPPrefix"));
 				
 				if (chat_player.hasPermission("admintool.NameTag")) {
 					chat_event.setFormat(AdminPrefix + chat_name + "§f >> " + Msg);

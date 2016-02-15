@@ -1,22 +1,34 @@
 package me.michael1011.main;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-// Todo: PingEvent, Ping, BagPack, fix gma, custom book,
-
 public class main extends JavaPlugin implements CommandExecutor {
 	
+    public static main instance;
+    public static File configf, messagesf;
+    public FileConfiguration config, messages;
+    
 	@Override
 	public void onEnable() {
-		cfg();
-		
+        instance = this;
+        createFiles();
+
 		new Home(this);
 		new Spawn(this);
 		new Gma(this);
@@ -29,12 +41,6 @@ public class main extends JavaPlugin implements CommandExecutor {
 		Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+"Plugin enabled!");
 	}
 	
-	public void cfg(){
-		reloadConfig();
-		getConfig().options().copyDefaults(true);
-		saveConfig();
-	}
-	
 	@Override
 	public void onDisable() {
 		Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+"Plugin disabled!");
@@ -44,7 +50,7 @@ public class main extends JavaPlugin implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmnd, String label, String[] args) {
 
-		String NoPermission = ChatColor.translateAlternateColorCodes('&', getConfig().getString("Settings.NoPermissionMessage"));
+		String NoPermission = ChatColor.translateAlternateColorCodes('&', instance.messages.getString("Players.NoPermission"));
 		
 		if (sender instanceof Player) {
 			
@@ -53,22 +59,95 @@ public class main extends JavaPlugin implements CommandExecutor {
 			if (args.length == 0) {
 			
 				if (p.hasPermission("admintool.reload")) {
-					reloadConfig();
-					p.sendMessage(PluginPrefix.Prefix+"§eReloaded Admin Tool config §6successfully§e!");
+					
+					try {
+						config.load(configf);
+					} catch (IOException | InvalidConfigurationException e) {
+						e.printStackTrace();
+					}
+					try {
+						messages.load(messagesf);
+					} catch (IOException | InvalidConfigurationException e) {
+						e.printStackTrace();
+					}
+					
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', instance.messages.getString("Players.Reload")));
 				} else {
 					p.sendMessage(PluginPrefix.Prefix+NoPermission);
 				}
 				
 			} else {
-				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/adminreload: §ereload the Admin Tool config");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', instance.messages.getString("Players.Usage")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', instance.messages.getString("Players.ReloadHelp")));
 			}
 			
 		} else {
-			reloadConfig();
-			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.YELLOW+"Reloaded Admin Tool config "+ChatColor.GOLD+"successfully"+ChatColor.YELLOW+"!");
+			
+			try {
+				config.load(configf);
+			} catch (IOException | InvalidConfigurationException e) {
+				e.printStackTrace();
+			}
+			try {
+				messages.load(messagesf);
+			} catch (IOException | InvalidConfigurationException e) {
+				e.printStackTrace();
+			}
+			
+			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', instance.messages.getString("Console.Reload")));
 		}
-
 		return true;
 	}
+	
+	
+	
+	public void createFiles() {
+
+		configf = new File(getDataFolder(), "config.yml");
+        messagesf = new File(getDataFolder(), "messages.yml");
+        
+        if (!configf.exists()) {
+            configf.getParentFile().mkdirs();
+            copy(getResource("config.yml"), configf);
+        }
+        
+        if (!messagesf.exists()) {
+        	messagesf.getParentFile().mkdirs();
+            copy(getResource("messages.yml"), messagesf);
+         }
+
+        config = new YamlConfiguration();
+        messages = new YamlConfiguration();
+        
+        try {
+        	config.load(configf);
+            messages.load(messagesf);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public void copy(InputStream in, File file) {
+
+        try {
+
+            OutputStream out = new FileOutputStream(file);
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+
+                out.write(buf, 0, len);
+
+            }
+            out.close();
+            in.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
 }

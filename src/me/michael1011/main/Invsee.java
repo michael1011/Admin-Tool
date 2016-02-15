@@ -19,7 +19,7 @@ public class Invsee implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender inv_sender, Command inv_cmd, String inv_label, String[] inv_args) {
 		
-		String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Settings.NoPermissionMessage"));
+		String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.NoPermission"));
 		
 		if (inv_sender instanceof Player) {
 			
@@ -27,11 +27,11 @@ public class Invsee implements CommandExecutor {
 		
 			if (inv_args.length == 0) {
 				
-				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/invsee <player>: §esee the inventory of an other player");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.InvseeHelp1")));
 				p.sendMessage(PluginPrefix.Prefix+"");
-				p.sendMessage(PluginPrefix.Prefix+"§4§lExample:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/invsee Michi_amk : §eto see inventory of Michi_amk");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.InvseeHelp2")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.InvseeHelp3")));
 				
 			} else if (inv_args.length == 1) {
 				
@@ -42,13 +42,13 @@ public class Invsee implements CommandExecutor {
 					
 					if (target == null) {
 
-						p.sendMessage(PluginPrefix.Prefix+"§cThe player §4"+name+" §ccouldnt be found!");
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.InvseeNoPlayer")));
 					
 					} else {
 						
 						if (target == p) {
 							
-							p.sendMessage(PluginPrefix.Prefix+"§cWhy do you want to see §4your own §cinventory?");
+							p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.InvseeOwn")));
 						
 						} else {
 							p.openInventory(target.getInventory());
@@ -61,16 +61,16 @@ public class Invsee implements CommandExecutor {
 				
 			} else {
 				
-				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/invsee <player>: §esee the inventory of an other player");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.InvseeHelp1")));
 				p.sendMessage(PluginPrefix.Prefix+"");
-				p.sendMessage(PluginPrefix.Prefix+"§4§lExample:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/invsee Michi_amk : §eto see inventory of Michi_amk");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.InvseeHelp2")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.InvseeHelp3")));
 				
 			}
 			
 		} else {
-			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+"Only players can execute this command!");
+			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Console.OnlyPlayers")));
 		}
 		
 		return true;

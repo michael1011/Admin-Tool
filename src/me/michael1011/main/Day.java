@@ -19,7 +19,7 @@ public class Day implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender day_sender, Command day_cmd, String day_label, String[] day_args) {
 		
-		String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Settings.NoPermissionMessage"));
+		String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.NoPermission"));
 		
 		if (day_sender instanceof Player) {
 			
@@ -29,19 +29,19 @@ public class Day implements CommandExecutor {
 				
 				if (p.hasPermission("admintool.day")){
 					p.getWorld().setTime(1000);
-					p.sendMessage(PluginPrefix.Prefix+"§eSet time to §6day§e!");
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Day")));
 					
 				} else {
 					p.sendMessage(NoPermission);
 				}
 				
 			} else {
-				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/day: §eset the time in your map to day");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.DayHelp")));
 			}
 			
 		} else {
-			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+"Only players can execute this command!");
+			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Console.OnlyPlayers")));
 		}
 		return true;
 	}

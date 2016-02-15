@@ -1,5 +1,7 @@
 package me.michael1011.main;
 
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -24,26 +26,26 @@ public class Home implements CommandExecutor {
 			
 			Player p = (Player) sender;
 			
-			String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Settings.NoPermissionMessage"));
+			String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.NoPermission"));
 			
 			if (args.length == 0) {
 				
 				if (p.hasPermission("admintool.home")) {
 					
-					if (plugin.getConfig().getBoolean("Homes." + p.getName() + ".enable") == true) {
+					if (plugin.config.getBoolean("Homes." + p.getName() + ".enable") == true) {
 						
-						String[] parts = plugin.getConfig().getString("Homes." + p.getName() + ".coords").split("/");
+						String[] parts = plugin.config.getString("Homes." + p.getName() + ".coords").split("/");
 						Location player = new Location(Bukkit.getServer().getWorld(parts[3]), Integer.parseInt(parts[0]),
 						         Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
 						
 						p.teleport(player);
 						
 					} else {
-						p.sendMessage(PluginPrefix.Prefix+"§eYou §4havent set §ea home yet!");
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeHaventSet")));
 						p.sendMessage(PluginPrefix.Prefix+"");
-						p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-						p.sendMessage(PluginPrefix.Prefix+"§6/home: §eto teleport yourself to your home");
-						p.sendMessage(PluginPrefix.Prefix+"§6/home set: §eset your home");
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeHelp1")));
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeHelp2")));
 					}
 				
 				} else {
@@ -53,21 +55,25 @@ public class Home implements CommandExecutor {
 			} else if (args.length == 1) {
 				
 				Location location = p.getLocation();
-				plugin.getConfig().set("Homes." + p.getName() + ".coords", location.getBlockX() + "/" + location.getBlockY() + "/" +
+				plugin.config.set("Homes." + p.getName() + ".coords", location.getBlockX() + "/" + location.getBlockY() + "/" +
 						           location.getBlockZ() + "/" + location.getWorld().getName());
-				plugin.getConfig().set("Homes." + p.getName() + ".enable", true);
-				plugin.saveConfig();
+				plugin.config.set("Homes." + p.getName() + ".enable", true);
+				try {
+					plugin.config.save(main.configf);
+				} catch (IOException e) {
+					e.printStackTrace();
+				};
 				
-				p.sendMessage(PluginPrefix.Prefix+"§eYour home was set §6successfully§e!");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeSet")));
 				
 			} else if (args.length > 1){
-				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/home: §eto teleport yourself to your home");
-				p.sendMessage(PluginPrefix.Prefix+"§6/home set: §eset your home");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeHelp1")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeHelp2")));
 			}
 			
 		} else {
-			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+"Only players can execute this command!");
+			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Console.OnlyPlayers")));
 			}
 		
 		return true;

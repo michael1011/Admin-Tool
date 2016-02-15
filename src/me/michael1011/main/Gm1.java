@@ -20,16 +20,16 @@ public class Gm1 implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmnd, String label, String[] args) {
 		
-		String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Settings.NoPermissionMessage"));
+		String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.NoPermission"));
 		
 		if (sender instanceof Player) {
 			
 			Player p = (Player) sender;
 			
 			if (args.length == 0 ) {
-				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/gm 1: §efor gamemode 1");
-				p.sendMessage(PluginPrefix.Prefix+"§6/gm 0: §efor gamemode 0");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GM1Help")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GM0Help")));
 				
 			} else if (args.length == 1) {
 				
@@ -37,7 +37,7 @@ public class Gm1 implements CommandExecutor {
 					
 					if(p.hasPermission("admintool.gm")) {
 						p.setGameMode(GameMode.CREATIVE);
-						p.sendMessage(PluginPrefix.Prefix+"§eYou are in §6gamemode 1§e now!");
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GM1")));
 					} else {
 						p.sendMessage(PluginPrefix.Prefix+NoPermission);
 					}
@@ -46,25 +46,25 @@ public class Gm1 implements CommandExecutor {
 					
 					if(p.hasPermission("admintool.gm")) {
 						p.setGameMode(GameMode.SURVIVAL);
-						p.sendMessage(PluginPrefix.Prefix+"§eDu bist nun im §6Gamemode 0§e!");
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GM0")));
 					} else {
 						p.sendMessage(PluginPrefix.Prefix+NoPermission);
 					}
 					
 				} else {
-					p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-					p.sendMessage(PluginPrefix.Prefix+"§6/gm 1: §efor gamemode 1");
-					p.sendMessage(PluginPrefix.Prefix+"§6/gm 0: §efor gamemode 0");
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GM1Help")));
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GM0Help")));
 				}
 				
 			} else {
-				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/gm 1: §efor gamemode 1");
-				p.sendMessage(PluginPrefix.Prefix+"§6/gm 0: §efor gamemode 0");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GM1Help")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GM0Help")));
 			}
 			
 		} else {
-			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+"Only players can execute this command!");
+			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Console.OnlyPlayers")));
 		}
 		
 		return true;

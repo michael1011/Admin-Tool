@@ -1,6 +1,6 @@
 main: me.michael1011.main.main
 name: AdminTool
-version: 1.0.1
+version: 1.1.0
 description: Admin Tool by Michael1011
 author: Michael1011
 database: false
@@ -20,7 +20,7 @@ commands:
      usage: /day
    adminreload:
      description: "reload the config"
-     aliases: [lr, lebenr, lreload]
+     aliases: [ar, adminr, areload]
      usage: /lebenreload
    gma:
      description: "sets all players in a specific radius in the gamemode 1 or 0"

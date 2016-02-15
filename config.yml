@@ -1,43 +1,32 @@
 # AdminTool by Michael1011
-# Version 1.0.1
+# Version 1.1.0
 
 JoinMessages:
   EnableWelcomePlayer: true
-# Aktiviert und dearktiviert die "Willkommen <player>!" Nachricht beim joinen.
+# Activates "Welcome <player>!" message on join.
 
-  SecondLine: "&6Updates: &erelease"
-  ThirdLine: "&6Coming updates: &e/ping will show your ping..."
-# Ändert die Joinmessages. Wenn zwischen den Anführungszeichen nichts steht wird nichts ausgegeben.
+  SecondLine: "&6Updates: &emade all messages editable!"
+  ThirdLine: "&6Coming updates: &emaintenance mode..."
+# Changes the join messages of non admins. Write nothing between the quotation marks to disable it.
 
-Settings:
-# Andere Einstellungen
-  
-  NoPermissionMessage: "&4Not enough permissions!"
-# Die Nachricht die Spieler bekommen wenn sie nicht die benötigten Permissions haben (nur dieses Plugin)
-
+Settings: 
   OPPrefixEnable: true
-# Sollten OPs eine spezielle Farbe haben?
+# Should Admins have a prefix in the tablist and the chat?
 
   OPPrefix: "&4[Admin] "
-# Wird im Chat vor dem Namen angezeigt
+# This appears in front of the name of a admin in the chat.
   
   OPColor: "§4"
-# Sorry, aber du musst ein § (und kein &) vor den Fabcodes machen. :/
+# Sorry, but you have to set a § (not a &) in front of the color code. :/
 
   GMARadius: 500
-# Radius von GMA in Blöcke
+# radius of the /gma command
 
   CustomSpawn: false
-# Soll /spawn aktiviert sein?
+# Set nothing here! Its automatically true when you set the spawn with /spawn set .
 
   spawnCoord: false
-# Die Koordinaten wo der Spieler auftauchen soll
-
-  Shop: false
-# Soll der Befehl /shop aktiviert werden um zum Shop zu gelangen?
-
-  shopCoord: false
-# Die Koordinaten vom Shop
+# The coords of the spawn. Set it with /spawn set .
 
 Homes:
-# Hier nicht rein schreiben
+# Here appears something when a player sets his home with /home set.

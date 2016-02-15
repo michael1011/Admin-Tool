@@ -23,17 +23,16 @@ public class Gma implements CommandExecutor {
 		
 		if (sender instanceof Player) {
 			
-			String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Settings.NoPermissionMessage"));
+			String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.NoPermission"));
 			Boolean comp = false;
 			
 			Player p = (Player) sender;
 			
 			if (args.length == 0) {
 				
-				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/gma 1: §eset all players in the radius of GMARadius in the config to gamemode 1");
-				p.sendMessage(PluginPrefix.Prefix+"§6/gm 1 500: §ecoming soon...");
-				p.sendMessage(PluginPrefix.Prefix+"§eFor gamemode 0 replace the 1 with a 0.");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMAHelp1")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMAHelp2")));
 				
 			} else if (args.length == 1) {
 				
@@ -63,60 +62,47 @@ public class Gma implements CommandExecutor {
                         			
                                 } else {
                                 	
-                    				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-                    				p.sendMessage(PluginPrefix.Prefix+"§6/gma 1: §eset all players in the radius of GMARadius in the config to gamemode 1");
-                    				p.sendMessage(PluginPrefix.Prefix+"§6/gm 1 500: §ecoming soon...");
-                    				p.sendMessage(PluginPrefix.Prefix+"§eFor gamemode 0 replace the 1 with a 0.");
+                    				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Player.Usage")));
+                    				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMAHelp1")));
+                    				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMAHelp2")));
                     				
                                 }	
                     			
                     		} else {
-                    			p.sendMessage(PluginPrefix.Prefix+"§eThere are §4no players §6in radius of " + range + " §e!");
+                    			p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMANoPlayer")));
                     			
                     		}
                     	}
                     }     
                        } else {
-                    	   	p.sendMessage(PluginPrefix.Prefix+"§eThe radius §4shouldnt §ebe null sein!");
-                    	   	p.sendMessage(PluginPrefix.Prefix+"§eChange in the §6config GMARADIUS§e!");
+                    	   	p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMAConfigNull1")));
+                    	   	p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMAConfigNull2")));
                 			
                        }
 					
 					if (comp == true) {
 						
 						if (args[0].equals("1")) {
-                            p.sendMessage(PluginPrefix.Prefix+"§eYou gave all players in the §6radius of " + range + " §6gamemode 1§e!");
+                            p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMA1")));
 						
 						} else if (args[0].equals("0")) {
-                            p.sendMessage(PluginPrefix.Prefix+"§eYou gave all players in the §6radius of " + range + " §6gamemode 0§e!");
+                            p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMA0")));
 						}
 					}
                     
 				} else {
 					p.sendMessage(PluginPrefix.Prefix+NoPermission);
 				}
-				
-				
-			} else if (args.length == 2) {
-				
-				if (p.hasPermission("admintool.gma")) {
-					
-					p.sendMessage("§eCooming soon...");
-					
-				} else {
-					p.sendMessage(NoPermission);
-				}
 			
 			} else {
 				
-				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/gma 1: §eset all players in the radius of GMARadius in the config to gamemode 1");
-				p.sendMessage(PluginPrefix.Prefix+"§6/gm 1 500: §ecoming soon...");
-				p.sendMessage(PluginPrefix.Prefix+"§eFor gamemode 0 replace the 1 with a 0.");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Player.Usage")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMAHelp1")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.GMAHelp2")));
 			}
 			
 		} else {
-			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+"Only players can execute this command!");
+			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Console.OnlyPlayers")));Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Console.OnlyPlayers")));
 		}
 		
 		return true;

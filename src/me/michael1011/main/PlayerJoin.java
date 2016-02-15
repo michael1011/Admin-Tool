@@ -19,8 +19,8 @@ public class PlayerJoin implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		
-		String line2 = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("JoinMessages.SecondLine"));
-		String line3 = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("JoinMessages.ThirdLine"));
+		String line2 = ChatColor.translateAlternateColorCodes('&', plugin.config.getString("JoinMessages.SecondLine"));
+		String line3 = ChatColor.translateAlternateColorCodes('&', plugin.config.getString("JoinMessages.ThirdLine"));
 	
 		Player p = e.getPlayer();
 		
@@ -28,14 +28,14 @@ public class PlayerJoin implements Listener {
 			
 			if(p.hasPermission("admintool.joinMessage")) {
 				
-				if (plugin.getConfig().getBoolean("JoinMessages.EnableWelcomePlayer") == true) {
+				if (plugin.config.getBoolean("JoinMessages.EnableWelcomePlayer") == true) {
 					p.sendMessage("§eWelcome §6"+p.getName()+"§e!");
 					
 				}
 
 			} else {
 				
-				if (plugin.getConfig().getBoolean("JoinMessages.EnableWelcomePlayer") == true) {
+				if (plugin.config.getBoolean("JoinMessages.EnableWelcomePlayer") == true) {
 					p.sendMessage("§eWelcome §6"+p.getName()+"§e!");
 				}
 				

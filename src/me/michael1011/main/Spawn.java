@@ -1,5 +1,7 @@
 package me.michael1011.main;
 
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -20,7 +22,7 @@ public class Spawn implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
-		String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("Settings.NoPermissionMessage"));
+		String NoPermission = ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.NoPermission"));
 		
 		if (sender instanceof Player) {
 			
@@ -28,23 +30,23 @@ public class Spawn implements CommandExecutor {
 			
 			if (args.length == 0) {
 				
-				if (plugin.getConfig().getBoolean("Settings.CustomSpawn") == false){
+				if (plugin.config.getBoolean("Settings.CustomSpawn") == false){
 					
 					if (p.hasPermission("admintool.spawn.set")) {
-						p.sendMessage(PluginPrefix.Prefix+"§eYou have to set a spawn with §6/spawn set §e!");
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.SpawnNotSet")));
 					} else {
-						p.sendMessage(PluginPrefix.Prefix+"§eThis command was §6disabled by a admin §efor all players!");
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.SpawnNotSetP")));
 					}
 
 				} else {
 					
 					if (p.hasPermission("admintool.spawn")) {
-						String[] parts = plugin.getConfig().getString("Settings.spawnCoord").split("/");
+						String[] parts = plugin.config.getString("Settings.spawnCoord").split("/");
 						Location player = new Location(Bukkit.getServer().getWorld(parts[3]), Integer.parseInt(parts[0]),
 						         Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
 						
 						p.teleport(player);
-						p.sendMessage(PluginPrefix.Prefix+"§eNow you are at the §6spawn§e!");
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Spawn")));
 					
 					} else {
 						p.sendMessage(PluginPrefix.Prefix+NoPermission);
@@ -58,32 +60,36 @@ public class Spawn implements CommandExecutor {
 					if (p.hasPermission("leben.spawn.set")) {
 						
 						Location location = p.getLocation();
-						plugin.getConfig().set("Settings.spawnCoord", location.getBlockX() + "/" + location.getBlockY() + "/" +
+						plugin.config.set("Settings.spawnCoord", location.getBlockX() + "/" + location.getBlockY() + "/" +
 						           location.getBlockZ() + "/" + location.getWorld().getName());
-						plugin.getConfig().set("Settings.CustomSpawn", true);
-						plugin.saveConfig();
+						plugin.config.set("Settings.CustomSpawn", true);
+						try {
+							plugin.config.save(main.configf);
+						} catch (IOException e) {
+							e.printStackTrace();
+						};
 
-						p.sendMessage(PluginPrefix.Prefix+"§eThe spawn was set §6successfully§e!");
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.SpawnSet")));
 						
 					} else {
 						p.sendMessage(NoPermission);
 					}
 
 				} else {
-					p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-					p.sendMessage(PluginPrefix.Prefix+"§6/spawn: §eteleports you to the spawn");
-					p.sendMessage(PluginPrefix.Prefix+"§6/spawn set: §esets the spawn point");
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.SpawnHelp1")));
+					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.SpawnHelp2")));
 				}
 				
 			} else {
-				p.sendMessage(PluginPrefix.Prefix+"§4§lUsage:");
-				p.sendMessage(PluginPrefix.Prefix+"§6/spawn: §eteleports you to the spawn");
-				p.sendMessage(PluginPrefix.Prefix+"§6/spawn set: §esets the spawn point");
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.SpawnHelp1")));
+				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.SpawnHelp2")));
 			}
 				
 				
 		} else {
-			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+"Only players can execute this command!");
+			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Console.OnlyPlayers")));
 		}
 		
 		return true;
