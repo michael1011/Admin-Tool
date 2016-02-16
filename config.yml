@@ -1,5 +1,5 @@
 # AdminTool by Michael1011
-# Version 1.2.0
+# Version 1.3.0
 
 MaintenanceMode: false
 # When its true is the maintenance mode on. Set its ingame with /maintenance .
@@ -15,9 +15,9 @@ JoinMessages:
   EnableWelcomePlayer: true
 # Activates "Welcome <player>!" message on join.
 
-  SecondLine: "&6Updates: &emaintenance mode (/maintenance)..."
+  SecondLine: "&6Updates: &eWarps, updater and a translation to German"
   SecondLineEnable: true
-  ThirdLine: "&6Coming updates: &etranslation to &6German &eand &6warps&e!"
+  ThirdLine: "&6Coming updates: &e!"
   ThirdLineEnable: true
 # Changes the join messages of non admins.
 
@@ -40,6 +40,9 @@ Settings:
 
   spawnCoord: false
 # The coords of the spawn. Set it with /spawn set .
+  
+  Updater: true
+# Should the plugin check for updates?
 
-Homes:
-# Here appears something when a player sets his home with /home set.
+  UpdaterSendPlayer: true
+# Should Admins (with the permission admintool.joinMessage) get a message when a new update aviable is? Or should there only be a message in the console?

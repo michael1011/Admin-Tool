@@ -21,14 +21,25 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class main extends JavaPlugin implements CommandExecutor {
 	
     public static main instance;
-    public static File configf, messagesf;
-    public FileConfiguration config, messages;
+    public static File configf, messagesf, homesf, warpsf;
+    public FileConfiguration config, messages, homes, warps;
+    public Boolean updateAvailable;
+    public String version;
     
 	@Override
 	public void onEnable() {
         instance = this;
         createFiles();
-
+        
+        if (config.getBoolean("Settings.Updater")) {
+	        getServer().getScheduler().runTaskLaterAsynchronously(this, new Runnable() {
+	            public void run() {
+	                checkUpdate();
+	            }
+	        }, 20L);
+        }
+        
+        new Warps(this);
         new MaintenanceL(this);
         new MaintenanceC(this);
 		new Home(this);
@@ -48,6 +59,33 @@ public class main extends JavaPlugin implements CommandExecutor {
 		Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+"Plugin disabled!");
 	}
 	
+	
+	private void checkUpdate() {
+		final Updater updater = new Updater(this, 18422, false);
+        final Updater.UpdateResult result = updater.getResult();
+        
+        switch (result) {
+        case FAIL_SPIGOT: {
+        	updateAvailable = false;
+            break;
+        }
+        case NO_UPDATE: {
+            updateAvailable = false;
+        	break;
+        }
+        case UPDATE_AVAILABLE: {
+            version = updater.getVersion();
+            Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', messages.getString("Players.UpdateMessage"))+version);
+            Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', messages.getString("Players.UpdateMessage2"))+"http://bit.ly/1QexebX");
+            updateAvailable = true;
+            break;
+        }
+        default: {
+        	updateAvailable = false;
+            break;
+        }
+    }
+	}
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmnd, String label, String[] args) {
@@ -69,6 +107,16 @@ public class main extends JavaPlugin implements CommandExecutor {
 					}
 					try {
 						messages.load(messagesf);
+					} catch (IOException | InvalidConfigurationException e) {
+						e.printStackTrace();
+					}
+					try {
+						homes.load(homesf);
+					} catch (IOException | InvalidConfigurationException e) {
+						e.printStackTrace();
+					}
+					try {
+						warps.load(warpsf);
 					} catch (IOException | InvalidConfigurationException e) {
 						e.printStackTrace();
 					}
@@ -95,6 +143,16 @@ public class main extends JavaPlugin implements CommandExecutor {
 			} catch (IOException | InvalidConfigurationException e) {
 				e.printStackTrace();
 			}
+			try {
+				homes.load(homesf);
+			} catch (IOException | InvalidConfigurationException e) {
+				e.printStackTrace();
+			}
+			try {
+				warps.load(warpsf);
+			} catch (IOException | InvalidConfigurationException e) {
+				e.printStackTrace();
+			}
 			
 			Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', instance.messages.getString("Console.Reload")));
 		}
@@ -107,6 +165,8 @@ public class main extends JavaPlugin implements CommandExecutor {
 
 		configf = new File(getDataFolder(), "config.yml");
         messagesf = new File(getDataFolder(), "messages.yml");
+        homesf = new File(getDataFolder(), "homes.yml");
+        warpsf = new File(getDataFolder(), "warps.yml");
         
         if (!configf.exists()) {
             configf.getParentFile().mkdirs();
@@ -117,13 +177,27 @@ public class main extends JavaPlugin implements CommandExecutor {
         	messagesf.getParentFile().mkdirs();
             copy(getResource("messages.yml"), messagesf);
          }
+        
+        if (!homesf.exists()) {
+        	homesf.getParentFile().mkdirs();
+            copy(getResource("homes.yml"), homesf);
+        }
 
+        if (!warpsf.exists()) {
+        	warpsf.getParentFile().mkdirs();
+            copy(getResource("warps.yml"), warpsf);
+        }
+        
         config = new YamlConfiguration();
         messages = new YamlConfiguration();
+        homes = new YamlConfiguration();
+        warps = new YamlConfiguration();
         
         try {
         	config.load(configf);
             messages.load(messagesf);
+            homes.load(homesf);
+            warps.load(warpsf);
             
         } catch (Exception e) {
             e.printStackTrace();

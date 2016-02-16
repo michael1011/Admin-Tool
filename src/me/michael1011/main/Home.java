@@ -32,11 +32,11 @@ public class Home implements CommandExecutor {
 				
 				if (p.hasPermission("admintool.home")) {
 					
-					if (plugin.config.getBoolean("Homes." + p.getName() + ".enable")) {
+					if (plugin.homes.getBoolean("Homes." + p.getName() + ".enable")) {
 						
-						String[] parts = plugin.config.getString("Homes." + p.getName() + ".coords").split("/");
-						Location player = new Location(Bukkit.getServer().getWorld(parts[3]), Integer.parseInt(parts[0]),
-						         Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+						String[] parts = plugin.homes.getString("Homes." + p.getName() + ".coords").split("/");
+						Location player = new Location(Bukkit.getServer().getWorld(parts[5]), Integer.parseInt(parts[0]),
+						         Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), Float.parseFloat(parts[3]), Float.parseFloat(parts[4]));
 						
 						p.teleport(player);
 						
@@ -55,17 +55,24 @@ public class Home implements CommandExecutor {
 			} else if (args.length == 1) {
 				
 				if (args[0].equalsIgnoreCase("set")) {
-					Location location = p.getLocation();
-					plugin.config.set("Homes." + p.getName() + ".coords", location.getBlockX() + "/" + location.getBlockY() + "/" +
-							           location.getBlockZ() + "/" + location.getWorld().getName());
-					plugin.config.set("Homes." + p.getName() + ".enable", true);
-					try {
-						plugin.config.save(main.configf);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
 					
-					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeSet")));
+					if (p.hasPermission("admintool.home")) {
+						Location location = p.getLocation();
+						plugin.homes.set("Homes." + p.getName() + ".coords", location.getBlockX() + "/" + location.getBlockY() + "/" +
+								           location.getBlockZ() + "/" + location.getYaw() + "/" + location.getPitch() + "/" + location.getWorld().getName());
+						plugin.homes.set("Homes." + p.getName() + ".enable", true);
+						try {
+							plugin.homes.save(main.homesf);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						
+						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.HomeSet")));
+					
+					} else {
+						p.sendMessage(PluginPrefix.Prefix+NoPermission);
+					}
+
 					
 				} else {
 					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Usage")));

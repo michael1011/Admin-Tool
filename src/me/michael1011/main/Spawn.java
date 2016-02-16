@@ -43,8 +43,8 @@ public class Spawn implements CommandExecutor {
 					if (p.hasPermission("admintool.spawn")) {
 						
 						String[] parts = plugin.config.getString("Settings.spawnCoord").split("/");
-						Location player = new Location(Bukkit.getServer().getWorld(parts[3]), Integer.parseInt(parts[0]),
-						         Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+						Location player = new Location(Bukkit.getServer().getWorld(parts[5]), Integer.parseInt(parts[0]),
+						         Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), Float.parseFloat(parts[3]), Float.parseFloat(parts[4]));
 						
 						p.teleport(player);
 						p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Spawn")));
@@ -58,11 +58,11 @@ public class Spawn implements CommandExecutor {
 				
 				if (args[0].equals("set")) {
 					
-					if (p.hasPermission("leben.spawn.set")) {
+					if (p.hasPermission("admintool.spawn.set")) {
 						
 						Location location = p.getLocation();
 						plugin.config.set("Settings.spawnCoord", location.getBlockX() + "/" + location.getBlockY() + "/" +
-						           location.getBlockZ() + "/" + location.getWorld().getName());
+						           location.getBlockZ() + "/" + location.getYaw() + "/" + location.getPitch() + "/" +location.getWorld().getName());
 						plugin.config.set("Settings.CustomSpawn", true);
 						try {
 							plugin.config.save(main.configf);

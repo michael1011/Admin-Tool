@@ -33,6 +33,7 @@ public class Invsee implements CommandExecutor {
 				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.InvseeHelp2")));
 				p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.InvseeHelp3")));
 				
+				
 			} else if (inv_args.length == 1) {
 				
 				if (p.hasPermission("admintool.invsee")) {
