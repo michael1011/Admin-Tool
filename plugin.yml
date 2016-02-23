@@ -1,6 +1,6 @@
-main: me.michael1011.main.main
+main: main.main
 name: AdminTool
-version: 1.3.0
+version: 1.3.5
 description: Admin Tool by Michael1011
 author: Michael1011
 database: false
@@ -42,3 +42,83 @@ commands:
      description: "teleport yourself to the warp with /warp <name>"
      aliases: [wp]
      usage: /warp <name>
+   admingui:
+     description: "open the admin gui"
+     usage: /admingui <argument>
+   clearchat:
+     description: "clear the chat"
+     aliases: [cc, clearc]
+     usage: /clearchat <argument>
+     
+permissions:
+   admintool.*:
+        description: "all permissions of the plugin"
+        children:
+            admintool.reload: true
+            admintool.day: true
+            admintool.spawn: true
+            admintool.spawn.set: true
+            admintool.home: true
+            admintool.invsee: true
+            admintool.gm: true
+            admintool.gma: true
+            admintool.NameTag: true
+            admintool.joinMessage: true
+            admintool.maintenance.set: true
+            admintool.maintenance.join: true
+            admintool.warp.create: true
+            admintool.warp.*: true
+            admintool.gui: true
+            admintool.clearchat: true
+            admintool.clearchat.global: true
+   admintool.reload:
+        description: "for the /adminreload command"
+        default: op
+   admintool.day:
+        description: "for the /day command"
+        default: op
+   admintool.spawn:
+        description: "for the /spawn command"
+        default: true
+   admintool.spawn.set:
+        description: "for the /spawn set command"
+        default: op
+   admintool.home:
+        description: "for the commands /home and /home set"
+        default: true
+   admintool.invsee:
+        description: "for the /invsee commad"
+        default: op
+   admintool.gm:
+        description: "for the /gm command"
+        default: op
+   admintool.gma:
+        description: "for the /gma command"
+        default: op
+   admintool.NameTag:
+        description: "for the name tags in the tablist and in the chat"
+        default: op
+   admintool.joinMessage:
+        description: "for the admin join messages and the update notification"
+        default: op
+   admintool.maintenance.set:
+        description: "to toggle the maintenance mode (/maintenance)"
+        default: op
+   admintool.maintenance.join:
+        description: "join when the maintenance mode is on"
+        default: op
+   admintool.warp.create:
+        description: "create warps (/warp create <warp name>)"
+        default: op
+   admintool.warp.*:
+        description: "to teleport yourself to the warps"
+        default: true
+   admintool.gui:
+        description: "permission to open the gui"
+        default: op
+   admintool.clearchat.global:
+        description: "to clear the chat of all"
+        default: op
+   admintool.clearchat:
+        description: "clear your chat"
+        default: true

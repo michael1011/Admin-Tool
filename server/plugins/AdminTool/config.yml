@@ -1,0 +1,48 @@
+# AdminTool by Michael1011
+# Version 1.3.5
+
+MaintenanceMode: false
+# When its true is the maintenance mode on. Set its ingame with /maintenance .
+MaintenanceMessage: "&cThe server is in &4maintenance mode&c!"
+# This message sees a player when he wants to join an the maintenance mode is on.
+MaintenanceMotd: true
+# When the maintenance mode active is should there be a different motd?
+MaintenanceMotdText: "\u00A7cThe server is in \u00A74maintenance mode\u00A7c! \n\u00A7cWe will be online again \u00A74in one hour\u00A7c!"
+# If MaintenanceMotd is true this will be your motd when the maintenance mode is on. Use this color codes http://bit.ly/1Tm0U7e and \n for a new line.
+
+
+JoinMessages:
+  EnableWelcomePlayer: true
+# Activates "Welcome <player>!" message on join.
+
+  SecondLine: "&6Updates: &eWarps, updater and a translation to German"
+  SecondLineEnable: true
+  ThirdLine: "&6Coming updates: &6ChatClear &e(your Chat and the Chat of all players), sorted &tab list&e!"
+  ThirdLineEnable: true
+# Changes the join messages of non admins.
+
+
+Settings: 
+  OPPrefixEnable: true
+# Should Admins have a prefix in the tablist and the chat?
+
+  OPPrefix: "&4[Admin] "
+# This appears in front of the name of a admin in the chat and admins will see it in the welcome message.
+
+  GMARadius: 500
+# radius of the /gma command
+
+  CustomSpawn: false
+# Set nothing here! Its automatically true when you set the spawn with /spawn set .
+
+  spawnCoord: false
+# The coords of the spawn. Set it with /spawn set 
+
+  AntiSpawnTrapping: true
+# Should antiSpawnTrapping be enabled?
+  
+  Updater: true
+# Should the plugin check for updates?
+
+  UpdaterSendPlayer: true
+# Should Admins (with the permission admintool.joinMessage) get a message when a new update aviable is? Or should there only be a message in the console?

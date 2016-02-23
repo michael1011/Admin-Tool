@@ -84,6 +84,22 @@ Players:
   UpdateMessage2: "&eDownload it here&6: "
 # Line 2 of the update message in the console. After that the download link comes
   
+  ClearChat: "&eYour chat was &6cleared&e!"
+# When you clear you chat /clearchat
+  ClearChatGlobal: "&eYour chat was cleared by a &6Admin&e!"
+# All players (excluding the sender of the command) will get this message when you clear the chat for all.
+  ClearChatGlobalA: "&eYou cleared the chat &6for all players successfully&e!"
+# This message will you (only the command sender) get when you execute /clearchat global
+  ClearChatPlayer: "&eCleared the chat of: &6"
+# When you clear the chat of a player (/clearchat <player>) you will get this message. After the message comes the name of the cleared player
+  ClearChatHelp1: "&6/clearchat: &eclear your chat"
+  ClearChatHelp2: "&6/clearchat global: &eclar the chat of every player"
+  ClearChatHelp3: "&6/clearchat Michi_amk: &eto clear the chat of Michi_amk"
+# the help of the /clearchat command
+
+  GUIOpenWithClock: "&eYou should open the GUI with a &6clock&e!"
+# When you execute /admingui (you should take a clock and right click it)
+  
   
 Console:
 # Some player messages will be shown in the console too.

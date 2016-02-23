@@ -1,0 +1,112 @@
+Players:
+  NoPermission: "&4Not enough permissions!"
+  Usage: "&4&lUsage:"
+# This is the message when write a command false in my plugin. Example: /day testtest
+  
+  Reload: "&eReloaded AdminTool config &6successfully&e!"
+# For the command /adminreload .
+  ReloadHelp: "&6/adminreload: &ereload the Admin Tool config"
+# The help for /adminreload. Its the secound line when you write /adminreload help .
+
+  Day: "&eSet time to &6day&e!"
+# The message when you execute /day .
+  DayHelp: "&6/day: &eset the time in your map to day"
+
+  GM1: "&eYou are in &6gamemode 1&e now!"
+  GM0: "&eYou are in &6gamemode 0&e now!"
+# Output of the /gm 0 or /gm 1 command.
+  GM1Help: "&6/gm 1: &efor gamemode 1"
+  GM0Help: "&6/gm 0: &efor gamemode 0"
+# Output of the /gm help command.
+
+  GMA1: "&eYou gave all players in the &6radius &6gamemode 1&e!"
+  GMA0: "&eYou gave all players in the &6radius of &6gamemode 0&e!"
+# This Message comes when you gave all players in the radius gamemode.
+  GMAConfigNull1: "&eThe radius &4shouldnt &ebe zero!"
+  GMAConfgiNull2: "&eChange in the &6config GMARADIUS&e!"
+# This message comes when the in the config defines radius is zero. "GMAConfigNull2" is line 2.
+  GMANoPlayer: "&eThere are &4no players &6in radius&e!"
+# This message comes when no player is in the radius.
+  GMAHelp1: "&6/gma 1: &eset all players in the radius of GMARadius in the config to gamemode 1"
+  GMAHelp2: "&eFor gamemode 0 replace the 1 with a 0."
+# Output for /gma and /gma help . The GMAHelp1 is for line 1 and GMAHelp2 for line 2.
+  
+  HomeSet: "&eYour home was set &6successfully&e!"
+# Message when a player set his home.
+  HomeHaventSet: "&eYou &4havent set &ea home yet!"
+# This message comes in front of the help when you havent set a home yet and you execute /home. 
+  HomeHelp1: "&6/home: &eto teleport yourself to your home"
+  HomeHelp2: "&6/home set: &eset your home"
+# The help messages of /home .
+  
+  InvseeNoPlayer: "&cThe player you were searching for &ccouldnt be found!"
+# This comes when you write "/invsee user" but user is not online.
+  InvseeOwn: "&cWhy do you want to see &4your own &cinventory?"
+# When you want to see your own inventory. 
+  InvseeHelp1: "&6/invsee <player>: &esee the inventory of an other player"
+  InvseeHelp2: "&4&lExample:"
+  InvseeHelp3: "&6/invsee Michi_amk : &eto see inventory of Michi_amk"
+# The help of the "invsee" command.
+  
+  Spawn: "&eNow you are at the &6spawn&e!"
+# When you execute /spawn you teleport yourself to the spawn and you get a message.
+# Here you can define it.
+  SpawnSet: "&eThe spawn was set &6successfully&e!"
+# The message when you set the spawn (/spawn set).
+  SpawnNotSet: "&eYou have to set a spawn with &6/spawn set &e!"
+# This message is sent to admins (people wich have the permission admintool.spawn.set) when no spawn is set.
+  SpawnNotSetP: "&eThis command was &6disabled by a admin &efor all players!"
+# The same like above but for players (without the permission admintool.spawn.set).
+  SpawnHelp1: "&6/spawn: &eteleports you to the spawn"
+  SpawnHelp2: "&6/spawn set: &esets the spawn point"
+# The help of /spawn
+
+  MaintenanceOn: "&6Maintenance mode &eenabled&6!"
+# When you enable the maintenanve mode.
+  MaintenanceOff: "&6Maintenance mode &edisabled&6!"
+# When you disable the maintenanve mode.
+  MaintenanceHelp1: "&6/maintenance: &etoggles the maintenance mode (on, off)"
+  MaintenanceHelp2: "&6/maintenance on: &eenables the maintenance mode, replace on with off for disabling"
+# Help for the /maintenance command
+
+  WarpCreated: "&eWarp created &6successfully&e!"
+  WarpUpdated: "&6Changed coordinates &eof the warp &6successfully&e!"
+# For the command /warp create <name> 
+  WarpDoesNotExist: "&eThat warp &6does not exist&e!"
+# When you execute /warp 123 and the warp 123 does not exist
+  WarpHelp1: "&6/warp test : &eteleports you to the warp test"
+  WarpHelp2: "&6/warp create test : &ecreates the warp test at your location"
+# The help of the /warp command
+
+# The messages below come when a new update aviable is
+  UpdateMessage: "&eA &6new version &eof AdminTool is out:&6 "
+# After this comes the version number of the update
+  UpdateMessage2: "&eDownload it here&6: "
+# Line 2 of the update message in the console. After that the download link comes
+  
+  ClearChat: "&eYour chat was &6cleared&e!"
+# When you clear you chat /clearchat
+  ClearChatGlobal: "&eYour chat was cleared by a &6Admin&e!"
+# All players (excluding the sender of the command) will get this message when you clear the chat for all.
+  ClearChatGlobalA: "&eYou cleared the chat &6for all players successfully&e!"
+# This message will you (only the command sender) get when you execute /clearchat global
+  ClearChatPlayer: "&eCleared the chat of: &6"
+# When you clear the chat of a player (/clearchat <player>) you will get this message. After the message comes the name of the cleared player
+  ClearChatHelp1: "&6/clearchat: &eclear your chat"
+  ClearChatHelp2: "&6/clearchat global: &eclar the chat of every player"
+  ClearChatHelp3: "&6/clearchat Michi_amk: &eto clear the chat of Michi_amk"
+# the help of the /clearchat command
+
+  GUIOpenWithClock: "&eYou should open the GUI with a &6clock&e!"
+# When you execute /admingui (you should take a clock and right click it)
+  
+  
+Console:
+# Some player messages will be shown in the console too.
+  Reload: "&eReloaded AdminTool config &6successfully&e!"
+  
+  OnlyPlayers: "&eOnly players can execute this command!"
+# This message comes when the console wants to execute a command wich is only available for players. 
+
+
+# End of the config. Now you have translated my bad English! :D
