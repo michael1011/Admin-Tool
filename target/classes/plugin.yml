@@ -1,6 +1,6 @@
 main: main.main
 name: AdminTool
-version: 1.3.4
+version: 1.3.6
 description: Admin Tool by Michael1011
 author: Michael1011
 database: false

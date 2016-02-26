@@ -1,6 +1,8 @@
 package GUI;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,29 +26,24 @@ public class InteractGui implements Listener {
 	@EventHandler
 	public void GUIset(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
+		String var = e.getCurrentItem().getItemMeta().getDisplayName();
 		
 		if (p.hasPermission("admintool.gui")) {
 			if(e.getInventory().equals(main.GUI)) {
 				if(e.getCurrentItem().getItemMeta() == null) {
 					return;
 				} else {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§4§lCheats")) {
-						p.closeInventory();
-						e.setCancelled(true);
+					e.setCancelled(true);
+					p.closeInventory();
+					if(var.equals("§4§lCheats")) {
 						p.chat("/admingui cheats");
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§8Home")) {
-						p.closeInventory();
-						e.setCancelled(true);
+					} else if(var.equals("§8Home")) {
 						p.chat("/admingui home");
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§c§lReload the server")) {
+					} else if(var.equals("§c§lReload the server")) {
 						p.chat("/rl");
-						e.setCancelled(true);
-						p.closeInventory();
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§8Chat clear")) {
-						e.setCancelled(true);
-						p.closeInventory();
+					} else if(var.equals("§8Chat clear")) {
 						p.chat("/admingui clearchat");
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eCooming §6soon§e...")) {
+					} else if(var.equals("§eCooming §6soon§e...")) {
 						e.setCancelled(true);
 					}
 				}
@@ -55,18 +52,14 @@ public class InteractGui implements Listener {
 				if(e.getCurrentItem().getItemMeta() == null) {
 					return;
 				} else {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Go back")) {
-						p.closeInventory();
-						e.setCancelled(true);
+					e.setCancelled(true);
+					p.closeInventory();
+					if(var.equals("§7Go back")) {
 						p.chat("/admingui");
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eTeleport you §6home")) {
+					} else if(var.equals("§eTeleport you §6home")) {
 						p.chat("/home");
-						e.setCancelled(true);
-						p.closeInventory();
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eSet your §6home §ehere")) {
+					} else if(var.equals("§eSet your §6home §ehere")) {
 						p.chat("/home set");
-						e.setCancelled(true);
-						p.closeInventory();
 					}
 				}
 			}
@@ -74,34 +67,24 @@ public class InteractGui implements Listener {
 				if(e.getCurrentItem().getItemMeta() == null) {
 					return;
 				} else {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Go back")) {
-						p.closeInventory();
-						e.setCancelled(true);
+					e.setCancelled(true);
+					p.closeInventory();
+					if(var.equals("§7Go back")) {
 						p.chat("/admingui");
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§2Gamemode §a0")) {
-						p.chat("/gamemode 0");
-						e.setCancelled(true);
-						p.closeInventory();
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§9Gamemode §b1")) {
-						p.chat("/gamemode 1");
-						e.setCancelled(true);
-						p.closeInventory();
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§8Gamemode §72")) {
-						p.chat("/gamemode 2");
-						e.setCancelled(true);
-						p.closeInventory();
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eDay")) {
-						p.chat("/time set day");
-						e.setCancelled(true);
-						p.closeInventory();
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§8Night")) {
-						p.chat("/time set night");
-						e.setCancelled(true);
-						p.closeInventory();
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bToggle downfall")) {
+					} else if(var.equals("§2Gamemode §a0")) {
+						p.setGameMode(GameMode.SURVIVAL);
+					} else if(var.equals("§9Gamemode §b1")) {
+						p.setGameMode(GameMode.CREATIVE);
+					} else if(var.equals("§8Gamemode §72")) {
+						p.setGameMode(GameMode.ADVENTURE);;
+					} else if(var.equals("§eDay")) {
+						World world = p.getWorld();
+						world.setTime(1000);
+					} else if(var.equals("§8Night")) {
+						World world = p.getWorld();
+						world.setTime(13000);
+					} else if(var.equals("§bToggle downfall")) {
 						p.chat("/toggledownfall");
-						e.setCancelled(true);
-						p.closeInventory();
 					}
 				}
 			}
@@ -109,18 +92,14 @@ public class InteractGui implements Listener {
 				if(e.getCurrentItem().getItemMeta() == null) {
 					return;
 				} else {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Go back")) {
-						p.closeInventory();
-						e.setCancelled(true);
+					e.setCancelled(true);
+					p.closeInventory();
+					if(var.equals("§7Go back")) {
 						p.chat("/admingui");
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eClear §6your §echat")) {
+					} else if(var.equals("§eClear §6your §echat")) {
 						p.chat("/clearchat me");
-						e.setCancelled(true);
-						p.closeInventory();
-					} else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eClear the chat of §4all §eplayers")) {
+					} else if(var.equals("§eClear the chat of §4all §eplayers")) {
 						p.chat("/clearchat global");
-						e.setCancelled(true);
-						p.closeInventory();
 					}
 				}
 			}
