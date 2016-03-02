@@ -1,6 +1,6 @@
 main: main.main
 name: AdminTool
-version: 1.3.6
+version: 1.3.7
 description: Admin Tool by Michael1011
 author: Michael1011
 database: false
@@ -49,6 +49,16 @@ commands:
      description: "clear the chat"
      aliases: [cc, clearc]
      usage: /clearchat <argument>
+   ping:
+     description: "get your ping"
+     usage: /ping <player>
+   mute:
+     description: "mute a player"
+     usage: /mute <player>
+   globalmute:
+     description: "disable the chat"
+     aliases: [gmute, globalm]
+     usage: /globalmute <on, off>
      
 permissions:
    admintool.*:
@@ -59,6 +69,7 @@ permissions:
             admintool.spawn: true
             admintool.spawn.set: true
             admintool.home: true
+            admintool.home.multiple: true
             admintool.invsee: true
             admintool.gm: true
             admintool.gma: true
@@ -71,6 +82,11 @@ permissions:
             admintool.gui: true
             admintool.clearchat: true
             admintool.clearchat.global: true
+            admintool.ping: true
+            admintool.ping.others: true
+            admintool.mute: true
+            admintool.globalmute: true
+            admintool.globalmute.chat: true
    admintool.reload:
         description: "for the /adminreload command"
         default: op
@@ -86,6 +102,9 @@ permissions:
    admintool.home:
         description: "for the commands /home and /home set"
         default: true
+   admintool.home.multiple:
+        description: "allows people to have multiple homes"
+        default: op
    admintool.invsee:
         description: "for the /invsee commad"
         default: op
@@ -122,3 +141,18 @@ permissions:
    admintool.clearchat:
         description: "clear your chat"
         default: true
+   admintool.ping:
+        description: "see your ping /ping"
+        default: true
+   admintool.ping.others:
+        description: "see of other players"
+        default: op
+   admintool.mute:
+        description: "mute players"
+        default: op
+   admintool.globalmute:
+        description: "toggle the global mute"
+        default: op
+   admintool.globalmute.chat:
+        description: "chat when the globalmute is active"
+        default: op

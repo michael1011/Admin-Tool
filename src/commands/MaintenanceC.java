@@ -68,8 +68,6 @@ public class MaintenanceC implements CommandExecutor {
 					
 					sender.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.MaintenanceOff")));
 					
-				} else {
-					sender.sendMessage(PluginPrefix.Prefix+"Something went wrong...");
 				}
 				
 			} else {

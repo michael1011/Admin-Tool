@@ -35,7 +35,7 @@ public class Day implements CommandExecutor {
 					p.sendMessage(PluginPrefix.Prefix+ChatColor.translateAlternateColorCodes('&', plugin.messages.getString("Players.Day")));
 					
 				} else {
-					p.sendMessage(NoPermission);
+					p.sendMessage(PluginPrefix.Prefix+NoPermission);
 				}
 				
 			} else {

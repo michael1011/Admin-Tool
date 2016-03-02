@@ -2,7 +2,6 @@ package main;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -11,7 +10,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -22,14 +20,18 @@ import org.bukkit.scoreboard.Scoreboard;
 import GUI.GUIOpener;
 import GUI.InteractGui;
 import commands.Day;
+import commands.GlobalMute;
 import commands.Gm1;
 import commands.Gma;
 import commands.Home;
 import commands.Invsee;
 import commands.MaintenanceC;
+import commands.MuteC;
+import commands.Ping;
 import commands.Spawn;
 import commands.Warps;
 import listeners.MaintenanceL;
+import listeners.MuteL;
 import listeners.NameTags;
 import listeners.PlayerJoin;
 import listeners.SortedTabList;
@@ -39,15 +41,15 @@ import commands.ClearChat;
 public class main extends JavaPlugin implements CommandExecutor {
 	
     public static main instance;
-    public static File configf, messagesf, homesf, warpsf;
+    public static File configf, messagesf, homesf, warpsf, mutedPf;
     
-    public FileConfiguration config, messages, homes, warps;
+    public FileConfiguration config, messages, homes, warps, mutedP;
     public Boolean updateAvailable;
     public String version;
     
     public Scoreboard sb;
     
-    public static Inventory GUI, home, cheats, clearchat;
+    public static Inventory GUI, home, cheats, clearchat, allclearchat, ping, allPing, maint;
     
 	@Override
 	public void onEnable() {
@@ -63,6 +65,10 @@ public class main extends JavaPlugin implements CommandExecutor {
 	        }, 30L, 216000L);
         }
 
+        new GlobalMute(this);
+        new MuteL(this);
+        new MuteC(this);
+        new Ping(this);
         new GUIOpener(this);
         new InteractGui(this);
         new SortedTabList(this);
@@ -78,7 +84,7 @@ public class main extends JavaPlugin implements CommandExecutor {
 		new Day(this);
 		new Gm1(this);
 	    new PlayerJoin(this);
-	    
+
 		Bukkit.getConsoleSender().sendMessage(PluginPrefix.Prefix+ChatColor.RED+"Plugin enabled!");
 	}
 	
@@ -138,25 +144,15 @@ public class main extends JavaPlugin implements CommandExecutor {
 				if (p.hasPermission("admintool.reload")) {
 					
 					try {
-						config.load(configf);
-					} catch (IOException | InvalidConfigurationException e) {
-						e.printStackTrace();
-					}
-					try {
-						messages.load(messagesf);
-					} catch (IOException | InvalidConfigurationException e) {
-						e.printStackTrace();
-					}
-					try {
-						homes.load(homesf);
-					} catch (IOException | InvalidConfigurationException e) {
-						e.printStackTrace();
-					}
-					try {
-						warps.load(warpsf);
-					} catch (IOException | InvalidConfigurationException e) {
-						e.printStackTrace();
-					}
+			        	config.load(configf);
+			            messages.load(messagesf);
+			            homes.load(homesf);
+			            warps.load(warpsf);
+			            mutedP.load(mutedPf);
+			            
+			        } catch (Exception e) {
+			            e.printStackTrace();
+			        }
 					
 					ScoreBoard();
 					
@@ -173,25 +169,15 @@ public class main extends JavaPlugin implements CommandExecutor {
 		} else {
 			
 			try {
-				config.load(configf);
-			} catch (IOException | InvalidConfigurationException e) {
-				e.printStackTrace();
-			}
-			try {
-				messages.load(messagesf);
-			} catch (IOException | InvalidConfigurationException e) {
-				e.printStackTrace();
-			}
-			try {
-				homes.load(homesf);
-			} catch (IOException | InvalidConfigurationException e) {
-				e.printStackTrace();
-			}
-			try {
-				warps.load(warpsf);
-			} catch (IOException | InvalidConfigurationException e) {
-				e.printStackTrace();
-			}
+	        	config.load(configf);
+	            messages.load(messagesf);
+	            homes.load(homesf);
+	            warps.load(warpsf);
+	            mutedP.load(mutedPf);
+	            
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
 			
 			ScoreBoard();
 			
@@ -208,6 +194,7 @@ public class main extends JavaPlugin implements CommandExecutor {
         messagesf = new File(getDataFolder(), "messages.yml");
         homesf = new File(getDataFolder(), "homes.yml");
         warpsf = new File(getDataFolder(), "warps.yml");
+        mutedPf = new File(getDataFolder(), "mutedP.yml");
         
         if (!configf.exists()) {
             configf.getParentFile().mkdirs();
@@ -215,30 +202,37 @@ public class main extends JavaPlugin implements CommandExecutor {
         }
         
         if (!messagesf.exists()) {
-        	messagesf.getParentFile().mkdirs();
-            copy(getResource("messages.yml"), messagesf);
+            messagesf.getParentFile().mkdirs();
+        	copy(getResource("messages.yml"), messagesf);
          }
         
         if (!homesf.exists()) {
-        	homesf.getParentFile().mkdirs();
-            copy(getResource("homes.yml"), homesf);
+            homesf.getParentFile().mkdirs();
+        	copy(getResource("homes.yml"), homesf);
         }
 
         if (!warpsf.exists()) {
-        	warpsf.getParentFile().mkdirs();
-            copy(getResource("warps.yml"), warpsf);
+            warpsf.getParentFile().mkdirs();
+        	copy(getResource("warps.yml"), warpsf);
+        }
+        
+        if (!mutedPf.exists()) {
+            mutedPf.getParentFile().mkdirs();
+        	copy(getResource("mutedP.yml"), mutedPf);
         }
         
         config = new YamlConfiguration();
         messages = new YamlConfiguration();
         homes = new YamlConfiguration();
         warps = new YamlConfiguration();
+        mutedP = new YamlConfiguration();
         
         try {
         	config.load(configf);
             messages.load(messagesf);
             homes.load(homesf);
             warps.load(warpsf);
+            mutedP.load(mutedPf);
             
         } catch (Exception e) {
             e.printStackTrace();

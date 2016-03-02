@@ -1,0 +1,5 @@
+# Here appears something when a player sets his home with /home set.
+Homes:
+  Michi_amk:
+    coords: 402/63/428/-70.06845/-9.501305/world
+    enable: true

@@ -15,8 +15,16 @@ Players:
   GM1: "&eYou are in &6gamemode 1&e now!"
   GM0: "&eYou are in &6gamemode 0&e now!"
 # Output of the /gm 0 or /gm 1 command.
+  GM1P: "&eThe player &6%target% &eis on &6gamemode 1 &enow."
+  GM0P: "&eThe player &6%target% &eis on &6gamemode 0 &enow."
+# Output of /gm 0 <player> and /gm 1 <player> command. %target% is <player>.
+  GMNotFound: "�eThe player &c%player% &6couldn't &ebe found!"
+# When you execute /gm 1 test and the player test is not online. %player% is in this example test.
+  GMSelf: "&eYou can set &6your own GameMode &ewith &6/gm <0 / 1> &e!"
+# When you execute /gm 1 test and you name is test.
   GM1Help: "&6/gm 1: &efor gamemode 1"
   GM0Help: "&6/gm 0: &efor gamemode 0"
+  GMPHelp: "&6/gm 1 test: &eto set the gamemode of player test to 1"
 # Output of the /gm help command.
 
   GMA1: "&eYou gave all players in the &6radius &6gamemode 1&e!"
@@ -33,11 +41,16 @@ Players:
   
   HomeSet: "&eYour home was set &6successfully&e!"
 # Message when a player set his home.
+  HomeSetMulti: "&eYou set the home &6%home% successfully&e!"
+# When you are able to set multiple homes and you set one of them. %home% is the home you set.
   HomeHaventSet: "&eYou &4havent set &ea home yet!"
 # This message comes in front of the help when you havent set a home yet and you execute /home. 
   HomeHelp1: "&6/home: &eto teleport yourself to your home"
   HomeHelp2: "&6/home set: &eset your home"
-# The help messages of /home .
+# The help for all players with the permission admintool.home .
+  HomeHelp3: "&6/home <name>: &eto teleport yourself to the home <name>"
+  HomeHelp4: "&6/home set <name>: &eto set the home <name>"
+# Only players with the permission admintool.home.multiple will get this messages.
   
   InvseeNoPlayer: "&cThe player you were searching for &ccouldnt be found!"
 # This comes when you write "/invsee user" but user is not online.
@@ -61,9 +74,9 @@ Players:
   SpawnHelp2: "&6/spawn set: &esets the spawn point"
 # The help of /spawn
 
-  MaintenanceOn: "&6Maintenance mode &eenabled&6!"
+  MaintenanceOn: "&eMaintenance mode &6enabled&e!"
 # When you enable the maintenanve mode.
-  MaintenanceOff: "&6Maintenance mode &edisabled&6!"
+  MaintenanceOff: "&eMaintenance mode &6disabled&e!"
 # When you disable the maintenanve mode.
   MaintenanceHelp1: "&6/maintenance: &etoggles the maintenance mode (on, off)"
   MaintenanceHelp2: "&6/maintenance on: &eenables the maintenance mode, replace on with off for disabling"
@@ -99,8 +112,47 @@ Players:
 
   GUIOpenWithClock: "&eYou should open the GUI with a &6clock&e!"
 # When you execute /admingui (you should take a clock and right click it)
-  
-  
+  GUITooManyPlayer: "&6Too many players &eare online!"
+# You know the gui which shows all player that are online? When there is not enough place for every player in the gui is this message comes.
+
+  Ping: "&eYour ping is &6%ping%"
+# When you want to see your ping (/ping). %ping% is you ping
+  PingPlayer: "&eThe ping of &6%target% &eis &6%ping%"
+# When you execute /ping test and the player test is online. %target% is in this example test and %ping% his ping.
+  PingNotFound: "&eThe player &6%target% couldn't &ebe found!"
+# When you execute /ping test and the player test is not online. %target% is in this example test
+  PingSelf: "&eYou can see &6your own &eping with &6/ping"
+# When you want see your own Ping with /ping <your name> .
+  PingHelp1: "&6/ping: &eto see your ping"
+  PingHelp2: "&6/player <player>: &eto see the ping of player"
+# The help of /ping
+
+  YouAreMuted: "&cYou are &4muted&c!"
+# When you want to chat but you are muted.
+  MutedP: "&eYou &6muted &4%target% &6successfully&e!"
+# When you mute a player. %target% is the player.
+  UnMutedP: "&eYou &6unmuted &4%target% &6successfully&e!"
+# When you unmute a player. %target% is the player.
+  MuteNotOnline: "&eThe player &c%target% &6couldn't &ebe found!"
+# When the player is not online. %target% is the player.
+  MuteHelp1: "&6/mute <player>: &eto mute a player"
+  MuteHelp2: "&6/mute <player>: &eumutes the player if its muted"
+# The help of /mute
+
+  GlobalMuteOn: "&6Enabled &cGlobalMute &6successfully!"
+# When you enable global mute.
+  GlobalMuteOff: "&6Disabled &cGlobalMute &6successfully!"
+# When you enable global mute.
+  GlubalMuteBroad: "&eThe &6chat is muted &enow! You are &6not able to chat&e anymore!"
+# All players will get this message when you enable the GlobalMute.
+  GlobalMuteAlrOn: "&6GlobalMute &eis already &6on&e!"
+# When you want to enable global mute but its already on.
+  GlobalMuteAlrOff: "&6GlobalMute &eis already &6off&e!"
+# When you want to disable global mute but its already off.
+  GlobalMuteHelp1: "&6/globalmute: &eto toggle the GlobalMute"
+  GlobalMuteHelp1: "&6/globalmute <on, off>: &eto to enable/disable GlobalMute"
+# Help of /globalmute .
+
 Console:
 # Some player messages will be shown in the console too.
   Reload: "&eReloaded AdminTool config &6successfully&e!"
